@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react'
-import Landing from '@/pages/index'
+import Home from '@/pages/index'
 import '@testing-library/jest-dom'
 
 describe('Home', () => {
   it('renders a title', () => {
-    render(<Landing />)
+    render(<Home />)
 
     const heading = screen.getByText('Get started by editing')
 
