@@ -1,2 +1,2 @@
-export type { Podcast } from './podcast.type'
+export type { Podcast, PodcastApiResponse, PodcastImage } from './podcast.type'
 

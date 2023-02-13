@@ -1,17 +1,15 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import type { Podcast } from '@/types'
+import type { Podcast, PodcastApiResponse } from '@/types'
 
-// Define a service using a base URL and expected endpoints
 export const podcastsApi = createApi({
   reducerPath: 'podcastsApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://cors-anywhere.herokuapp.com/https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json' }),
   endpoints: (builder) => ({
-    getAllPodcasts: builder.query<Podcast, string>({
-      query: () => `/`,
+    getAllPodcasts: builder.query<Podcast[], void>({
+      query: () => ``,
+      transformResponse: (response: PodcastApiResponse) => response.feed.entry
     }),
   }),
 })
 
-// Export hooks for usage in functional components, which are
-// auto-generated based on the defined endpoints
 export const { useGetAllPodcastsQuery } = podcastsApi
