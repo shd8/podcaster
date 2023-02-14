@@ -1,12 +1,11 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '@/styles/Home.module.css'
 import { useGetAllPodcastsQuery } from '@/store/services/podcastApi'
-import { useEffect } from 'react'
+import Podcast from '@/components/Podcast'
 
 const Home = () => {
 
-  const { data } = useGetAllPodcastsQuery();
+  const { data, isLoading } = useGetAllPodcastsQuery();
 
   return (
     <>
@@ -18,6 +17,20 @@ const Home = () => {
       </Head>
       <main className={styles.main}>
         <h1>Podcaster</h1>
+        {
+          isLoading 
+            ?
+              <p>Loading ...</p>
+            :
+            <ul>
+              {
+                data 
+                ? 
+                data.map((podcast) => <Podcast key={podcast.id.attributes['im:id']} podcast={podcast} />)
+                : <p>No data to be displayed</p>
+              }
+            </ul>
+          }
       </main>
     </>
   )
