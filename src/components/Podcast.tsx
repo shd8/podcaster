@@ -1,10 +1,10 @@
 import React from 'react'
-import { Podcast } from '@/types'
+import { IPodcast } from '@/types'
 import Image from 'next/image'
 import Link from 'next/link'
 
 export type PodcastProps = {
-    podcast: Podcast
+    podcast: IPodcast
 }
 
 const Podcast = ({ podcast }: PodcastProps) => {

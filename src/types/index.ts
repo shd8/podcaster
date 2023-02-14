@@ -1,1 +1,1 @@
-export type { Podcast, PodcastApiResponse, PodcastImage } from './podcast.type'
+export type { IPodcast, IPodcastApiResponse, IPodcastImage } from './podcast.type'

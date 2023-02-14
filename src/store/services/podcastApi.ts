@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import type { Podcast, PodcastApiResponse } from '@/types'
+import type { IPodcast, IPodcastApiResponse } from '@/types'
 
 const SECONDS_IN_A_DAY = 60 * 60 * 24
 
@@ -8,9 +8,9 @@ export const podcastsApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_PODCASTS_ENDPOINT }),
   keepUnusedDataFor: SECONDS_IN_A_DAY,
   endpoints: (builder) => ({
-    getAllPodcasts: builder.query<Podcast[], void>({
+    getAllPodcasts: builder.query<IPodcast[], void>({
       query: () => ``,
-      transformResponse: (response: PodcastApiResponse) => response.feed.entry
+      transformResponse: (response: IPodcastApiResponse) => response.feed.entry
     }),
   }),
 })
