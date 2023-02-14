@@ -1,11 +1,11 @@
-export interface PodcastImage {
+export interface IPodcastImage {
     attributes: {
         height: string
     },
     label: string
 }
 
-export interface Podcast {
+export interface IPodcast {
     category: {
         attributes: {
             'im:id' : string,
@@ -32,7 +32,7 @@ export interface Podcast {
             label: string
         }
     },
-    'im:image': PodcastImage[],
+    'im:image': IPodcastImage[],
     'im:name': {
         label: string
     },
@@ -67,8 +67,8 @@ export interface Podcast {
     }
 }
 
-export interface PodcastApiResponse {
+export interface IPodcastApiResponse {
     feed: {
-        entry: Podcast[]
+        entry: IPodcast[]
     }
 }

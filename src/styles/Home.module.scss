@@ -7,6 +7,16 @@
   min-height: 100vh;
 }
 
+.h1 {
+  color: blue;
+  width: 100%;
+}
+
+.hr {
+  width: 100%;
+  border-top: 1px solid black;
+}
+
 .description {
   display: inherit;
   justify-content: inherit;
