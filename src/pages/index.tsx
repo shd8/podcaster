@@ -8,10 +8,6 @@ const Home = () => {
 
   const { data } = useGetAllPodcastsQuery();
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
-
   return (
     <>
       <Head>

@@ -5,7 +5,7 @@ const SECONDS_IN_A_DAY = 60 * 60 * 24
 
 export const podcastsApi = createApi({
   reducerPath: 'podcastsApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://cors-anywhere.herokuapp.com/https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json' }),
+  baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_PODCASTS_ENDPOINT }),
   keepUnusedDataFor: SECONDS_IN_A_DAY,
   endpoints: (builder) => ({
     getAllPodcasts: builder.query<Podcast[], void>({
