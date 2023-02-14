@@ -1,14 +1,21 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore, combineReducers, PreloadedState } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
 import { podcastsApi } from '@/store/services/podcastApi'
 
-export const store = configureStore({
-  reducer: {
-    [podcastsApi.reducerPath]: podcastsApi.reducer,
-  },
-
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(podcastsApi.middleware),
+const rootReducer = combineReducers({
+  [podcastsApi.reducerPath]: podcastsApi.reducer
 })
 
-setupListeners(store.dispatch)
+export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
+  return configureStore({
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(podcastsApi.middleware),
+    preloadedState
+  })
+}
+
+setupListeners(setupStore().dispatch)
+
+export type RootState = ReturnType<typeof rootReducer>
+export type AppStore = ReturnType<typeof setupStore>

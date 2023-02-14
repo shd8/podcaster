@@ -1,14 +1,14 @@
 import '@/styles/globals.css'
+import { Provider } from 'react-redux'
 import type { AppProps } from 'next/app'
-import { ApiProvider } from '@reduxjs/toolkit/dist/query/react'
-import { podcastsApi } from '@/store/services/podcastApi'
+import { setupStore } from '@/store'
 
 const App = ({ Component, pageProps }: AppProps) => {
 
   return (
-    <ApiProvider api={podcastsApi}>
+    <Provider store={setupStore()}>
       <Component {...pageProps} />
-    </ApiProvider>
+    </Provider>
   )
 }
 
