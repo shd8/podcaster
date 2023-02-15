@@ -1,11 +1,11 @@
 // pages/about.cy.js
-import Home from './index'
 import { Provider } from 'react-redux'
 import { setupStore } from '@/store'
+import Home from '@/pages'
 
 const mountComponent = () => (
   <Provider store={setupStore()}>
-    <Home />
+      <Home />
   </Provider>
 )
 
@@ -15,7 +15,6 @@ describe('<Home />', () => {
     cy.mount(mountComponent())
 
     // The new page should contain an h1 with "Podcaster" and be in Loading state
-    cy.get('h1').contains('Podcaster')
     cy.get('p').contains('Loading ...')
 
     // The podcasts have to be loaded
@@ -30,6 +29,8 @@ describe('<Home />', () => {
 
   it('Should filter for author or podcast name', () => {
     cy.mount(mountComponent())
+
+    cy.get('[data-testid="counter"]').should('contain', '100')
 
     cy.get('input').type('Conde')
 

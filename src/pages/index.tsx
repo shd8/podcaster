@@ -37,8 +37,6 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <h1 className={styles.h1}>Podcaster</h1>
-        <hr className={styles.hr} />
         <p className={styles.counter} data-testid='counter'>{filteredData.length}</p>
         <input defaultValue={''} type="text" name="search" id="" onChange={handleOnChangeSearch} />
         {
