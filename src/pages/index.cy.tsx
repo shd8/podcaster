@@ -10,7 +10,7 @@ const mountComponent = () => (
 )
 
 describe('<Home />', () => {
-  it('should render and display expected content', () => {
+  it('Should render and display expected content', () => {
     // Mount the React component for the About page
     cy.mount(mountComponent())
 
@@ -23,6 +23,23 @@ describe('<Home />', () => {
 
     cy.get('li').first().contains('Author:')
 
-    cy.get('a').first().click()    
+    cy.get('li').first().within(() => {
+        cy.get('a').should('exist')
+      })
+    })
+
+  it('Should filter for author or podcast name', () => {
+    cy.mount(mountComponent())
+
+    cy.get('input').type('Conde')
+
+    cy.get('ul').children().should('have.length', '1')
+    cy.get('[data-testid="counter"]').should('contain', '1')
+
+    cy.get('input').clear()
+    cy.get('input').type('CoN')
+
+    cy.get('ul').children().should('have.length', '3')
+    cy.get('[data-testid="counter"]').should('contain', '3')
   })
 })
