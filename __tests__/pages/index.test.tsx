@@ -1,5 +1,5 @@
 import fetchMock from "jest-fetch-mock";
-import { screen, renderHook, act } from '@testing-library/react'
+import { renderHook, act, screen, waitFor } from '@testing-library/react'
 import Home from '@/pages/index'
 import '@testing-library/jest-dom'
 import { renderWithProviders, setupApiStore } from 'utils/test.utils'
@@ -27,4 +27,15 @@ describe('Home', () => {
 
     await act(() => expect(heading).toBeInTheDocument())
   })
+
+  it('Does not show loading after loading podcasts', async () => {
+
+    renderWithProviders(<Home />)
+
+    const loading = screen.getByText('Loading ...')
+
+    await waitFor(() => {
+      expect(loading).not.toBeInTheDocument()
+    })
+    })
 })
