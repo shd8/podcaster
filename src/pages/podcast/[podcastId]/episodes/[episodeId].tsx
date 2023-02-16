@@ -4,7 +4,7 @@ import { useGetPodcastEpisodesQuery } from '@/store/services/podcastApi';
 import { useAppDispatch } from '@/store';
 import { updateLoadingStatus } from '@/store/slices/loadingStatus.slice';
 import { IEpisode } from '@/types';
-import EpisodeTrack from '@/components/Episode';
+import EpisodeTrack from '@/components/EpisodeTrack';
 
 const Episode = () => {
     const [episode, setEpisode] = useState({} as IEpisode);
