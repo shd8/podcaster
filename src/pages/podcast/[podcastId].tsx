@@ -35,31 +35,33 @@ const PodcastDetail = () => {
             ?
               <p>Loading ...</p>
             :
-            <ul>
+            <div>
               {
-                <div>
-                  <div>
+                <ul>
+                  <ul>
                     <li>Title</li>
                     <li>Date</li>
                     <li>Duration</li>
-                  </div>
-                  {
-                    data
-                    ? 
-                    data.map((episode: IEpisode) => {
-                      return (
-                        <li key={episode.trackId}>
-                          <p>{episode.artistName} - {episode.trackName}</p>
-                          <p>{new Date(episode.releaseDate).toLocaleDateString()}</p>
-                          <p>{new Date(episode.trackTimeMillis).getMinutes()}:{new Date(episode.trackTimeMillis).getSeconds()}</p>
-                        </li>
-                      )
-                    })
-                    : <p>No data to be displayed</p>
-                  }
-                </div>
+                  </ul>
+                  <ul data-testid='episodes-list'>
+                    {
+                      data
+                      ? 
+                      data.map((episode: IEpisode) => {
+                        return (
+                          <li key={episode.trackId}>
+                            <p>{episode.artistName} - {episode.trackName}</p>
+                            <p>{new Date(episode.releaseDate).toLocaleDateString()}</p>
+                            <p>{new Date(episode.trackTimeMillis).getMinutes()}:{new Date(episode.trackTimeMillis).getSeconds()}</p>
+                          </li>
+                        )
+                      })
+                      : <p>No data to be displayed</p>
+                    }
+                  </ul>
+                </ul>
               }
-            </ul>
+            </div>
           }
         </ul>
       </div>
