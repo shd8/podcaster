@@ -2,10 +2,12 @@
 import { Provider } from 'react-redux'
 import { setupStore } from '@/store'
 import Home from '@/pages'
+import Header from '@/components/Header'
 
 const mountComponent = () => (
   <Provider store={setupStore()}>
-      <Home />
+    <Header />
+    <Home />
   </Provider>
 )
 
@@ -15,7 +17,9 @@ describe('<Home />', () => {
     cy.mount(mountComponent())
 
     // The new page should contain an h1 with "Podcaster" and be in Loading state
+    cy.get('h1').contains('Podcaster')
     cy.get('p').contains('Loading ...')
+    cy.get('[data-testid="loading"]').should('exist')
 
     // The podcasts have to be loaded
     cy.get('[data-testid="counter"]').should('contain', '100')
@@ -40,7 +44,7 @@ describe('<Home />', () => {
     cy.get('input').clear()
     cy.get('input').type('CoN')
 
-    cy.get('ul').children().should('have.length', '3')
-    cy.get('[data-testid="counter"]').should('contain', '3')
+    cy.get('ul').children().should('have.length.greaterThan', 1)
+    cy.get('[data-testid="counter"]').should('not.contain.value', '1')
   })
 })

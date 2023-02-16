@@ -14,8 +14,10 @@ const Header = () => {
   return (
     <div>
         <h1 className={styles.h1}>Podcaster</h1>
-        <p>IS LOADING? {loading}</p>
-        <span className={loading ? styles.loading : styles.loaded}></span>
+        <span 
+          className={loading ? styles.loading : styles.loaded} 
+          data-testid={loading ? 'loading' : 'loaded'}
+        />
         <hr className={styles.hr} />
     </div>
   )
