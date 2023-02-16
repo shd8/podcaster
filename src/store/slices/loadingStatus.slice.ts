@@ -20,6 +20,6 @@ const loadingStatusSlice = createSlice({
 
 export const { updateLoadingStatus } = loadingStatusSlice.actions
 
-export const selectLoadingState = (state: RootState) => state.loadingReducer.loading;
+export const selectLoadingState = (state: RootState) => state.loadingReducer?.loading;
 
 export default loadingStatusSlice.reducer

@@ -29,7 +29,7 @@ describe('Home', () => {
 
     const heading = screen.getByText('Podcaster')
 
-    await waitFor(() => expect(heading).toBeInTheDocument())
+    act(() => expect(heading).toBeInTheDocument())
   })
 
   it('Does not show loading after loading podcasts', async () => {
