@@ -1,11 +1,11 @@
 import { ChangeEvent, useEffect, useState } from 'react';
-import styles from '@/styles/Home.module.scss'
 import { useGetAllPodcastsQuery } from '@/store/services/podcastApi'
 import Podcast from '@/components/Podcast'
 import { IPodcast } from '@/types';
 import { includeNormalizedStrings } from '@/utils/text.utils';
 import { updateLoadingStatus } from '@/store/slices/loadingStatus.slice';
 import { useAppDispatch } from '@/store';
+import SearchCount from '@/components/SearchCount';
 
 const Home = () => {
   const dispatch = useAppDispatch();
@@ -33,8 +33,7 @@ const Home = () => {
 
   return (
     <>
-      <p className={styles.counter} data-testid='counter'>{filteredData.length}</p>
-      <input defaultValue={''} type="text" name="search" id="" onChange={handleOnChangeSearch} />
+      <SearchCount onChange={handleOnChangeSearch} length={filteredData.length} />
       {
         isLoading 
           ?
