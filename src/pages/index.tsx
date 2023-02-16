@@ -14,6 +14,7 @@ const Home = () => {
 
   useEffect(() => {
     setFilteredData(data || [])
+    console.log(data)
   }, [isLoading])
 
   const handleOnChangeSearch = ({ target }: ChangeEvent<HTMLInputElement> ) => {
