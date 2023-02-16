@@ -1,1 +1,1 @@
-export type { IPodcast, IPodcastApiResponse, IPodcastImage } from './podcast.type'
+export type { IPodcast, IPodcastApiResponse, IPodcastImage, IEpisodeResponse, IEpisode } from './podcast.type'

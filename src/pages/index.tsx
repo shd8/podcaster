@@ -5,8 +5,11 @@ import { useGetAllPodcastsQuery } from '@/store/services/podcastApi'
 import Podcast from '@/components/Podcast'
 import { IPodcast } from '@/types';
 import { includeNormalizedStrings } from '@/utils/text.utils';
+import { selectLoadingState, updateLoadingStatus } from '@/store/slices/loadingStatus.slice';
+import { useAppDispatch, useAppSelector } from '@/store';
 
 const Home = () => {
+  const dispatch = useAppDispatch();
 
   const { data, isLoading } = useGetAllPodcastsQuery();
 
@@ -14,7 +17,8 @@ const Home = () => {
 
   useEffect(() => {
     setFilteredData(data || [])
-  }, [isLoading])
+    dispatch(updateLoadingStatus(isLoading));
+  }, [isLoading, data])
 
   const handleOnChangeSearch = ({ target }: ChangeEvent<HTMLInputElement> ) => {
     const { value } = target;
@@ -37,9 +41,7 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <h1 className={styles.h1}>Podcaster</h1>
-        <hr className={styles.hr} />
-        <p>{filteredData.length}</p>
+        <p className={styles.counter} data-testid='counter'>{filteredData.length}</p>
         <input defaultValue={''} type="text" name="search" id="" onChange={handleOnChangeSearch} />
         {
           isLoading 
@@ -50,7 +52,7 @@ const Home = () => {
               {
                 filteredData 
                 ? 
-                filteredData.map((podcast) => <Podcast key={podcast.id.attributes['im:id']} podcast={podcast} />)
+                filteredData.map((podcast: IPodcast) => <Podcast key={podcast.id.attributes['im:id']} podcast={podcast} />)
                 : <p>No data to be displayed</p>
               }
             </ul>
