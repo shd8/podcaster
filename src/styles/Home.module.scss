@@ -7,33 +7,6 @@
   min-height: 100vh;
 }
 
-.h1 {
-  color: blue;
-  width: 100%;
-}
-
-.hr {
-  width: 100%;
-  border-top: 1px solid black;
-}
-
-.loading {
-  height: 25px;
-  width: 25px;
-  background-color: blue;
-  border-radius: 50%;
-  display: inline-block;
-}
-
-.loaded {
-  visibility: hidden;
-  height: 25px;
-  width: 25px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-} 
-
 .description {
   display: inherit;
   justify-content: inherit;
