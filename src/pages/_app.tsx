@@ -2,14 +2,13 @@ import '@/styles/globals.scss'
 import { Provider } from 'react-redux'
 import type { AppProps } from 'next/app'
 import { setupStore } from '@/store'
-import styles from '@/styles/Home.module.scss'
+import Header from '@/components/Header'
 
 const App = ({ Component, pageProps }: AppProps) => {
 
   return (
-    <Provider store={setupStore()}>
-      <h1 className={styles.h1}>Podcaster</h1>
-      <hr className={styles.hr} />
+    <Provider store={setupStore}>
+      <Header />
       <Component {...pageProps} />
     </Provider>
   )

@@ -5,8 +5,11 @@ import { useGetAllPodcastsQuery } from '@/store/services/podcastApi'
 import Podcast from '@/components/Podcast'
 import { IPodcast } from '@/types';
 import { includeNormalizedStrings } from '@/utils/text.utils';
+import { selectLoadingState, updateLoadingStatus } from '@/store/slices/loadingStatus.slice';
+import { useAppDispatch, useAppSelector } from '@/store';
 
 const Home = () => {
+  const dispatch = useAppDispatch();
 
   const { data, isLoading } = useGetAllPodcastsQuery();
 
@@ -14,8 +17,8 @@ const Home = () => {
 
   useEffect(() => {
     setFilteredData(data || [])
-    console.log(data)
-  }, [isLoading])
+    dispatch(updateLoadingStatus(isLoading));
+  }, [isLoading, data])
 
   const handleOnChangeSearch = ({ target }: ChangeEvent<HTMLInputElement> ) => {
     const { value } = target;

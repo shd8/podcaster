@@ -3,12 +3,20 @@ import styles from '@/styles/Home.module.scss'
 import { useRouter } from 'next/router'
 import { useGetPodcastEpisodesQuery } from '@/store/services/podcastApi'
 import { IEpisode } from '@/types'
+import { updateLoadingStatus } from '@/store/slices/loadingStatus.slice'
+import { useAppDispatch } from '@/store'
 
 const PodcastDetail = () => {
+
+  const dispatch = useAppDispatch();
 
   const { query } = useRouter();
   
   const { data, isLoading } = useGetPodcastEpisodesQuery(query.podcastId as string);
+
+  useEffect(() => {
+    dispatch(updateLoadingStatus(isLoading));
+  }, [isLoading])
 
   return (
     <main className={styles.main}>
