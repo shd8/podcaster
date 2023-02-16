@@ -7,10 +7,6 @@ const Header = () => {
 
     const loading = useAppSelector(selectLoadingState)
 
-    useEffect(() => {
-        console.log(loading)
-    }, [loading])
-
   return (
     <div>
         <h1 className={styles.h1}>Podcaster</h1>
