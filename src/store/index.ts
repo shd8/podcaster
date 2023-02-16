@@ -10,17 +10,18 @@ const rootReducer = combineReducers({
   loadingReducer: loadingSlice
 })
 
-export const setupStore = configureStore({
+export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
+  return configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(podcastsApi.middleware),
-})
+    preloadedState
+})}
 
-setupListeners(setupStore.dispatch)
+setupListeners(setupStore().dispatch)
 
 export type RootState = ReturnType<typeof rootReducer>
 
-export type AppDispatch = typeof setupStore.dispatch
-export const useAppDispatch: () => AppDispatch = useDispatch
+export const useAppDispatch = useDispatch
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
-
+export type AppStore = ReturnType<typeof setupStore>

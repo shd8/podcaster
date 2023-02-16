@@ -7,7 +7,7 @@ import Header from '@/components/Header'
 const App = ({ Component, pageProps }: AppProps) => {
 
   return (
-    <Provider store={setupStore}>
+    <Provider store={setupStore()}>
       <Header />
       <Component {...pageProps} />
     </Provider>

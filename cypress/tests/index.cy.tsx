@@ -4,7 +4,7 @@ import { setupStore } from '@/store'
 import Home from '@/pages'
 
 const mountComponent = () => (
-  <Provider store={setupStore()}>
+  <Provider store={setupStore}>
       <Home />
   </Provider>
 )
