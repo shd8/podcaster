@@ -5,6 +5,7 @@ import { useGetPodcastEpisodesQuery } from '@/store/services/podcastApi'
 import { IEpisode } from '@/types'
 import { updateLoadingStatus } from '@/store/slices/loadingStatus.slice'
 import { useAppDispatch } from '@/store'
+import Link from 'next/link'
 
 const PodcastDetail = () => {
 
@@ -27,8 +28,7 @@ const PodcastDetail = () => {
       <div>
         <div>
           <p>Episodes: {data?.length}</p>
-        </div>
-        
+        </div>        
         <ul>
         {
           isLoading 
@@ -50,7 +50,7 @@ const PodcastDetail = () => {
                       data.map((episode: IEpisode) => {
                         return (
                           <li key={episode.trackId}>
-                            <p>{episode.artistName} - {episode.trackName}</p>
+                            <Link href={`/podcast/${query.podcastId}/episodes/${episode.trackId}`}>{episode.artistName} - {episode.trackName}</Link>
                             <p>{new Date(episode.releaseDate).toLocaleDateString()}</p>
                             <p>{new Date(episode.trackTimeMillis).getMinutes()}:{new Date(episode.trackTimeMillis).getSeconds()}</p>
                           </li>
