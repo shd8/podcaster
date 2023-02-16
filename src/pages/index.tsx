@@ -6,6 +6,7 @@ import { includeNormalizedStrings } from '@/utils/text.utils';
 import { updateLoadingStatus } from '@/store/slices/loadingStatus.slice';
 import { useAppDispatch } from '@/store';
 import SearchCount from '@/components/SearchCount';
+import styles from '@/styles/Podcasts.view.module.scss'
 
 const Home = () => {
   const dispatch = useAppDispatch();
@@ -39,7 +40,7 @@ const Home = () => {
           ?
             <p>Loading ...</p>
           :
-          <ul>
+          <ul className={styles.podcastsList}>
             {
               filteredData 
               ? 
