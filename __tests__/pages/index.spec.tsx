@@ -7,6 +7,7 @@ import { podcastsApi, useGetAllPodcastsQuery } from '@/store/services/podcastApi
 import { Provider } from 'react-redux'
 import { ReactNode } from 'react'
 import Header from "@/components/Header";
+import '@testing-library/jest-dom'
 
 const wrapper = ({ children }: {children?: ReactNode}) => {
   const storeRef: any = setupApiStore(podcastsApi);
