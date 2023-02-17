@@ -13,7 +13,7 @@ const Header = () => {
     <div className={styles.container}>
         <h1 className={styles.h1}>Podcaster</h1>
         <span 
-          className={!loading ? styles.loading : styles.loaded} 
+          className={loading ? styles.loading : styles.loaded} 
           data-testid={loading ? 'loading' : 'loaded'}
         />
     </div>

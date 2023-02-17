@@ -4,14 +4,16 @@ import { useGetPodcastEpisodesQuery } from '@/store/services/podcastApi'
 import { IEpisode } from '@/types'
 import { updateLoadingStatus } from '@/store/slices/loadingStatus.slice'
 import { useAppDispatch } from '@/store'
-import Link from 'next/link'
 import EpisodeLink from '@/components/EpisodeLink'
+import styles from '@/styles/Podcast.view.module.scss';
+import ArtistsDetails from '@/components/ArtistsDetails'
 
 const PodcastDetail = () => {
 
   const dispatch = useAppDispatch();
 
-  const [filteredData, setFilteredData] = useState([] as IEpisode[])
+  const [filteredEpisodes, setFilteredEpisodes] = useState([] as IEpisode[])
+  const [podcast, setPodcast] = useState({} as IEpisode)
 
   const { query } = useRouter();
   
@@ -21,21 +23,26 @@ const PodcastDetail = () => {
 
     if (!isLoading && data) {
       const podcastEpisodes = data.filter(({ kind }) => kind === 'podcast-episode')
-      setFilteredData(podcastEpisodes)
+      const podcastFound = data.find(({ kind }) => kind === 'podcast')
+
+      if (podcastFound) setPodcast(podcastFound);
+      setFilteredEpisodes(podcastEpisodes)
     }
 
     dispatch(updateLoadingStatus(isLoading));
   }, [isLoading])
 
   return (
-    <>
-      <div className='details'>
-        <p>Artist details</p>
-      </div>
-
-      <div>
+    <div className={styles.container}>
+      <ArtistsDetails 
+        artist={podcast.artistName}
+        image={podcast.artworkUrl600}
+        shortDescription={podcast.primaryGenreName}
+        title={podcast.trackName}
+      />
+      <div className={styles.episodesListContainer}>
         <div>
-          <p>Episodes: {filteredData?.length}</p>
+          <p>Episodes: {filteredEpisodes?.length}</p>
         </div>        
         <ul>
         {
@@ -55,7 +62,7 @@ const PodcastDetail = () => {
                     {
                       data
                       ? 
-                      filteredData.map((episode: IEpisode) => {
+                      filteredEpisodes.map((episode: IEpisode) => {
                         return (
                           <EpisodeLink key={episode.trackId} episode={episode} podcastId={query.podcastId as string} />
                         )
@@ -69,7 +76,7 @@ const PodcastDetail = () => {
           }
         </ul>
       </div>
-    </>
+    </div>
   )
 }
 
