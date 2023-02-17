@@ -1,12 +1,14 @@
+import React from 'react';
 import fetchMock from "jest-fetch-mock";
 import { renderHook, act, screen, waitFor } from '@testing-library/react'
-import Home from '@/pages/index'
+import Home from '../../src/pages/index'
 import '@testing-library/jest-dom'
-import { renderWithProviders, setupApiStore } from 'utils/test.utils'
-import { podcastsApi, useGetAllPodcastsQuery } from '@/store/services/podcastApi'
+import { renderWithProviders, setupApiStore } from '../../utils/test.utils'
+import { podcastsApi, useGetAllPodcastsQuery } from '../../src/store/services/podcastApi'
 import { Provider } from 'react-redux'
 import { ReactNode } from 'react'
-import Header from "@/components/Header";
+import Header from "../../src/components/Header";
+import '@testing-library/jest-dom'
 
 const wrapper = ({ children }: {children?: ReactNode}) => {
   const storeRef: any = setupApiStore(podcastsApi);

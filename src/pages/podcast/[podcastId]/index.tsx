@@ -6,7 +6,7 @@ import { updateLoadingStatus } from '@/store/slices/loadingStatus.slice'
 import { useAppDispatch } from '@/store'
 import EpisodeLink from '@/components/EpisodeLink'
 import styles from '@/styles/Podcast.view.module.scss';
-import ArtistsDetails from '@/components/ArtistsDetails'
+import ArtistsDetails from '@/components/ArtistDetails'
 
 const PodcastDetail = () => {
 
@@ -44,6 +44,7 @@ const PodcastDetail = () => {
           image={podcast.artworkUrl600}
           shortDescription={podcast.primaryGenreName}
           title={podcast.trackName}
+          podcastId={query.podcastId as string}
         />
         <div className={styles.episodesListContainer}>
           <div className={styles.episodesSize}>

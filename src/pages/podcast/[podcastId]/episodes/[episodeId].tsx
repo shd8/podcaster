@@ -5,9 +5,12 @@ import { useAppDispatch } from '@/store';
 import { updateLoadingStatus } from '@/store/slices/loadingStatus.slice';
 import { IEpisode } from '@/types';
 import EpisodeTrack from '@/components/EpisodeTrack';
+import ArtistsDetails from '@/components/ArtistDetails';
+import styles from '@/styles/Episode.view.module.scss';
 
 const Episode = () => {
     const [episode, setEpisode] = useState({} as IEpisode);
+    const [podcast, setPodcast] = useState({} as IEpisode);
 
     const dispatch = useAppDispatch();
 
@@ -17,29 +20,49 @@ const Episode = () => {
 
     useEffect(() => {
         const episodeFound = data?.filter(({ kind }) => kind === 'podcast-episode').find(episode => `${episode.trackId}` === query.episodeId);
+        const podcastFound = data?.find(({ kind }) => kind === 'podcast')
 
         if (episodeFound) {
             setEpisode(episodeFound);
-            console.log(episodeFound)
         }
+
+        if (podcastFound) {
+            setPodcast(podcastFound)
+        }
+
 
         dispatch(updateLoadingStatus(isLoading));
 
     }, [data, isLoading])
 
     return (
-        <>
-            <div>Episode {query.episodeId}</div>
-            <div className='details'>
+        <div className={styles.container}>
+            {
+        isLoading 
+          ?
+            <p>Loading ...</p>
+          : <>
 
-            </div>
+            <ArtistsDetails 
+                artist={podcast.artistName}
+                image={podcast.artworkUrl600}
+                shortDescription={podcast.primaryGenreName}
+                title={podcast.trackName}
+                podcastId={query.podcastId as string}
+            />
             {
                 data 
-                ? <EpisodeTrack episode={episode} />
+                ? 
+                <div className={styles.episodeTrack}>
+                    <EpisodeTrack episode={episode} />
+                </div>
                 : <p>No data</p>
             }
-        </>       
+            </>    
+            }
+            </div>
     )
+    
 }
 
 export default Episode
