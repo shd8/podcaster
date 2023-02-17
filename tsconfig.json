@@ -20,6 +20,6 @@
     }
   },
   "types": ["node", "jest", "@testing-library/jest-dom"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.spec.ts", "jest.config.js"],
-  "exclude": ["node_modules"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.test.tsx", "jest.config.js"],
+  "exclude": ["node_modules", "**/*.spec.tsx"],
 }
