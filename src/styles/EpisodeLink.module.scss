@@ -1,0 +1,23 @@
+.episodeLink {
+    display: flex;
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+
+    a {
+        min-width: 42%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: cornflowerblue;
+    }
+
+    p {
+        width: 100%;
+        text-align: end;
+    }
+
+    .duration {
+        padding-right: 0.8rem;
+    }
+}

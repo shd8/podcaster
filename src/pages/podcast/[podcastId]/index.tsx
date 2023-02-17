@@ -34,48 +34,46 @@ const PodcastDetail = () => {
 
   return (
     <div className={styles.container}>
-      <ArtistsDetails 
-        artist={podcast.artistName}
-        image={podcast.artworkUrl600}
-        shortDescription={podcast.primaryGenreName}
-        title={podcast.trackName}
-      />
-      <div className={styles.episodesListContainer}>
-        <div>
-          <p>Episodes: {filteredEpisodes?.length}</p>
-        </div>        
-        <ul>
-        {
-          isLoading 
-            ?
-              <p>Loading ...</p>
-            :
-            <div>
-              {
-                <ul>
-                  <ul>
-                    <li>Title</li>
-                    <li>Date</li>
-                    <li>Duration</li>
-                  </ul>
-                  <ul data-testid='episodes-list'>
-                    {
-                      data
-                      ? 
-                      filteredEpisodes.map((episode: IEpisode) => {
-                        return (
-                          <EpisodeLink key={episode.trackId} episode={episode} podcastId={query.podcastId as string} />
-                        )
-                      })
-                      : <p>No data to be displayed</p>
-                    }
-                  </ul>
-                </ul>
-              }
+      {
+        isLoading 
+          ?
+            <p>Loading ...</p>
+          : <>
+        <ArtistsDetails 
+          artist={podcast.artistName}
+          image={podcast.artworkUrl600}
+          shortDescription={podcast.primaryGenreName}
+          title={podcast.trackName}
+        />
+        <div className={styles.episodesListContainer}>
+          <div className={styles.episodesSize}>
+            <span>Episodes: {filteredEpisodes?.length}</span>
+          </div>
+          {
+            <div className={styles.episodesList}>
+              <ul className={styles.episodesHeader}>
+                <li>Title</li>
+                <li className={styles.date}>Date</li>
+                <li className={styles.duration}>Duration</li>
+              </ul>
+              <hr />
+              <ul data-testid='episodes-list' className={styles.episodesLinks}>
+                {
+                  data
+                  ? 
+                  filteredEpisodes.map((episode: IEpisode) => {
+                    return (
+                      <EpisodeLink key={episode.trackId} episode={episode} podcastId={query.podcastId as string} />
+                    )
+                  })
+                  : <p>No data to be displayed</p>
+                }
+              </ul>
             </div>
           }
-        </ul>
-      </div>
+
+        </div>
+      </>}
     </div>
   )
 }
