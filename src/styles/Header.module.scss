@@ -1,0 +1,35 @@
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h1 {
+        color: cornflowerblue;
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+}
+
+.hr {
+    width: 100%;
+    border-top: 1px solid rgba(128, 128, 128, 0.474);
+}
+
+.loading {
+    height: 1rem;
+    width: 1rem;
+    margin-right: 0.5rem;
+    background-color: cornflowerblue;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  
+  .loaded {
+    visibility: hidden;
+    height: 25px;
+    width: 25px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+  } 

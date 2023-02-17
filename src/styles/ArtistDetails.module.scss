@@ -1,0 +1,51 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 12rem;
+    margin: 2rem;
+    border: 1px solid rgba(128, 128, 128, 0.474);
+    height: fit-content;
+    align-items: center;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    border-radius: 5px;
+
+    img {
+        margin: 1rem;
+        border-radius: 5px;
+    }
+
+    hr {
+        width: 80%;
+        border-top: 1px solid rgba(128, 128, 128, 0.474);
+    }
+
+    div {
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .title {
+        font-weight: bold;
+        font-size: 0.65rem;
+        padding-bottom: 0.2rem;
+    }
+
+    .artist {
+        font-size: 0.6rem;
+        font-style: italic;
+    }
+
+    .description {
+        span {
+            font-size: 0.65rem;
+            font-weight: bold;
+        }
+
+        p {
+            font-size: 0.6rem;
+            font-style: italic;
+        }
+    }
+}

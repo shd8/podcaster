@@ -74,6 +74,7 @@ export interface IPodcastApiResponse {
 }
 
 export interface IEpisode {
+    artistsIds?: string[]
     artistId: number,
     artistName: string,
     artistViewUrl: string,
@@ -91,12 +92,15 @@ export interface IEpisode {
     contentAdvisoryRating: string,
     country: string,
     currency: string,
+    description?: string,
+    episodeUrl?: string,
     feedUrl: string,
     genreIds: number[],
     genres: string[],
     kind: string,
     primaryGenreName: string,
     releaseDate: string,
+    shortDescription?: string,
     trackCensoredName: string,
     trackCount: number,
     trackExplicitness: string,
