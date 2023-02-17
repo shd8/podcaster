@@ -5,7 +5,7 @@ import { useAppDispatch } from '@/store';
 import { updateLoadingStatus } from '@/store/slices/loadingStatus.slice';
 import { IEpisode } from '@/types';
 import EpisodeTrack from '@/components/EpisodeTrack';
-import ArtistsDetails from '@/components/ArtistsDetails';
+import ArtistsDetails from '@/components/ArtistDetails';
 import styles from '@/styles/Episode.view.module.scss';
 
 const Episode = () => {
@@ -48,6 +48,7 @@ const Episode = () => {
                 image={podcast.artworkUrl600}
                 shortDescription={podcast.primaryGenreName}
                 title={podcast.trackName}
+                podcastId={query.podcastId as string}
             />
             {
                 data 
