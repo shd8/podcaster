@@ -17,13 +17,11 @@ describe('EpisodeTrack', () => {
     it('Should render with props', () => {
        const { container } = render(<EpisodeTrack episode={episode}/>)
 
-        const name = screen.getByText('Artist name - Track name')
-        const collectionName = screen.getByText('Collection name');
+        const name = screen.getByText('Collection name - Track name')
         const description = screen.getByText('Description')
         const link = container.getElementsByTagName('source')[0]
 
         expect(name).toBeInTheDocument()
-        expect(collectionName).toBeInTheDocument()
         expect(description).toBeInTheDocument()
         expect(link).toHaveAttribute('src', '/URL')
     })
